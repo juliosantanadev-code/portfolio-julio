@@ -42,7 +42,12 @@ export function Hero() {
               Ver Curriculum
             </Button>
           </a>
-          <Button variant="glass">
+          <Button 
+            variant="glass"
+            onClick={() => {
+              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Ver Proyectos
             <ChevronRight size={20} />
           </Button>
