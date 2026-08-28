@@ -50,11 +50,11 @@ export function Contact() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12 text-center"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tighter">
-            CONTÁCTAME<span className="text-gray-500 animate-pulse">_</span>
+          <h1 className="text-4xl md:text-5xl font-serif mb-4 tracking-tighter">
+            CONTÁCTAME<span className="text-crimson-500 animate-cursor-blink">_</span>
           </h1>
-          <p className="text-gray-400 text-[14px] uppercase tracking-widest">
-            Selecciona un medio
+          <p className="text-white font-bold text-[14px] uppercase tracking-widest">
+            Agendemos una reunión sin compromiso
           </p>
         </motion.div>
 
@@ -74,7 +74,7 @@ export function Contact() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={`
-              relative p-8 border text-left flex flex-col justify-between transition-all duration-300
+              relative h-full p-8 border text-left flex flex-col justify-between transition-all duration-300
               ${selectedChannel === 'email' 
                 ? 'border-white bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)]' 
                 : 'border-white/20 bg-black/60 hover:border-white/50 hover:bg-black/80'}
@@ -96,7 +96,7 @@ export function Contact() {
 
             <div className="flex items-center text-[12px] font-bold">
               <span className={`transition-opacity ${selectedChannel === 'email' ? 'opacity-100' : 'opacity-0'} mr-2`}>[</span>
-              {selectedChannel === 'email' ? 'CANAL_SELECCIONADO' : 'SELECCIONAR_CANAL'}
+              {selectedChannel === 'email' ? 'CANAL_SELECCIONADO' : 'Seleccionar'}
               <span className={`transition-opacity ${selectedChannel === 'email' ? 'opacity-100' : 'opacity-0'} ml-2`}>]</span>
             </div>
           </motion.button>
@@ -117,7 +117,7 @@ export function Contact() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={`
-              relative p-8 border text-left flex flex-col justify-between transition-all duration-300
+              relative h-full p-8 border text-left flex flex-col justify-between transition-all duration-300
               ${selectedChannel === 'whatsapp' 
                 ? 'border-[#25D366] bg-[#25D366]/10 shadow-[0_0_15px_rgba(37,211,102,0.2)]' 
                 : 'border-white/20 bg-black/60 hover:border-[#25D366]/50 hover:bg-black/80'}
@@ -139,7 +139,7 @@ export function Contact() {
 
             <div className={`flex items-center text-[12px] font-bold ${selectedChannel === 'whatsapp' ? 'text-[#25D366]' : ''}`}>
               <span className={`transition-opacity ${selectedChannel === 'whatsapp' ? 'opacity-100' : 'opacity-0'} mr-2`}>[</span>
-              {selectedChannel === 'whatsapp' ? 'CANAL_SELECCIONADO' : 'SELECCIONAR_CANAL'}
+              {selectedChannel === 'whatsapp' ? 'CANAL_SELECCIONADO' : 'Seleccionar'}
               <span className={`transition-opacity ${selectedChannel === 'whatsapp' ? 'opacity-100' : 'opacity-0'} ml-2`}>]</span>
             </div>
           </motion.button>
