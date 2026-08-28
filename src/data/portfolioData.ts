@@ -34,7 +34,7 @@ export const portfolioData = {
     primary: ["React", "SQL", "Python", "Java", "HTML", "CSS", "JavaScript", "Node.js", "Pandas", "Scikit-Learn"],
     secondary: ["C#", "Go", "R", "Vue.js", "Tailwind CSS", "TypeScript", "Git", "Docker"],
     tools: ["VS Code", "GitHub", "npm"],
-    learning: ["VBS", "C++"]
+    learning: ["Three.js", "C++"]
   },
   projects: [
     {

@@ -6,7 +6,7 @@ import {
   SiPython, SiHtml5, SiJavascript, SiNodedotjs, 
   SiPandas, SiScikitlearn, SiGo, SiR, 
   SiVuedotjs, SiTailwindcss, SiTypescript, SiGit, SiDocker, 
-  SiGithub, SiNpm, SiCplusplus, SiOllama
+  SiGithub, SiNpm, SiCplusplus, SiOllama, SiThreedotjs
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 import { VscVscode } from 'react-icons/vsc';
@@ -43,6 +43,7 @@ export function TechIcon({ name, className = "" }: TechIconProps) {
     'VBS': { icon: DiVisualstudio, color: '#5C2D91' },
     'C++': { icon: SiCplusplus, color: '#00599C' },
     'OLlama': { icon: SiOllama, color: '#ffffff' },
+    'Three.js': { icon: SiThreedotjs, color: '#000000' },
   };
 
   const data = iconData[name];

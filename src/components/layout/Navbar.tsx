@@ -1,62 +1,79 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '../../assets/logojs-transparent.png';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
 
-  const contactLink = "https://wa.me/51917983492?text=Estimado%20Julio%2C%20he%20revisado%20su%20portafolio%20profesional%20y%20me%20gustar%C3%ADa%20conversar%20acerca%20de%20una%20posible%20oportunidad%20de%20colaboraci%C3%B3n.";
+  // Helper for in-page anchors
+  const NavLink = ({ href, children }: { href: string, children: React.ReactNode }) => {
+    if (isHome) {
+      return <a href={href} className="text-gray-400 hover:text-black hover:bg-white transition-none px-2 py-1">{children}</a>;
+    }
+    return <Link to={`/${href}`} className="text-gray-400 hover:text-black hover:bg-white transition-none px-2 py-1">{children}</Link>;
+  };
+  
+  const MobileNavLink = ({ href, children }: { href: string, children: React.ReactNode }) => {
+    if (isHome) {
+      return <a href={href} onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-black hover:bg-white px-2 py-2 inline-block">{children}</a>;
+    }
+    return <Link to={`/${href}`} onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-black hover:bg-white px-2 py-2 inline-block">{children}</Link>;
+  };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b-white/10 rounded-none bg-white/5">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold text-white tracking-wider flex items-center gap-2 text-glow">
-          JS<span className="text-crimson-500">.</span>
-        </a>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background-dark">
+      {/* Thin black gradient separator */}
+      <div className="absolute -bottom-4 left-0 right-0 h-4 bg-gradient-to-b from-background-dark to-transparent pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center justify-between font-mono">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Julio Santana Logo" className="h-10 w-auto" />
+          </Link>
+          <button 
+            className="md:hidden text-text-main hover:text-white transition-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 text-[13px] font-medium text-gray-300">
-          <a href="#services" className="hover:text-white transition-colors">Servicios</a>
-          <a href="#projects" className="hover:text-white transition-colors">Proyectos</a>
-          <a href="#skills" className="hover:text-white transition-colors">Skills</a>
-          <a href="#about" className="hover:text-white transition-colors">Sobre Mí</a>
-        </div>
-
-        <div className="hidden md:block">
-          <a 
-            href={contactLink}
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="px-4 py-1.5 glass glass-hover rounded-[8px] text-[13px] font-medium text-white transition-all inline-block"
+        <div className="hidden md:flex items-center gap-8 text-[14px]">
+          <NavLink href="#services">Servicios</NavLink>
+          <NavLink href="#projects">Proyectos</NavLink>
+          <NavLink href="#skills">Skills</NavLink>
+          <NavLink href="#about">Sobre mí</NavLink>
+          
+          <Link 
+            to="/contact"
+            className="border border-white px-4 py-1.5 text-[14px] font-medium text-white bg-background-dark hover:bg-white hover:text-black transition-none group flex items-center float-1 hover-scale"
           >
-            Contactar
-          </a>
+            <span className="hidden group-hover:inline-block mr-2">{"["}</span>
+            <span>Contactar</span>
+            <span className="hidden group-hover:inline-block ml-2">{"]"}</span>
+          </Link>
         </div>
-
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden text-gray-300 hover:text-white transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden glass border-t border-white/10 bg-black/90 p-6 flex flex-col gap-6 text-center animate-in slide-in-from-top-2">
-          <a href="#services" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-white transition-colors font-medium">Servicios</a>
-          <a href="#projects" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-white transition-colors font-medium">Proyectos</a>
-          <a href="#skills" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-white transition-colors font-medium">Skills</a>
-          <a href="#about" onClick={() => setIsOpen(false)} className="text-gray-300 hover:text-white transition-colors font-medium">Sobre Mí</a>
-          <a 
-            href={contactLink}
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="mt-2 py-3 glass glass-hover rounded-[8px] text-sm font-medium text-white transition-all mx-auto w-full max-w-[200px]"
+        <div className="md:hidden border-t border-border-dark bg-background-dark p-6 flex flex-col gap-4 font-mono text-[14px]">
+          <MobileNavLink href="#services">Servicios</MobileNavLink>
+          <MobileNavLink href="#projects">Proyectos</MobileNavLink>
+          <MobileNavLink href="#skills">Skills</MobileNavLink>
+          <MobileNavLink href="#about">Sobre mí</MobileNavLink>
+          <Link 
+            to="/contact"
+            className="mt-4 border border-white px-4 py-3 text-white bg-background-dark hover:bg-white hover:text-black transition-none flex items-center justify-center group float-1 hover-scale"
             onClick={() => setIsOpen(false)}
           >
-            Contactar por WhatsApp
-          </a>
+            <span className="hidden group-hover:inline-block mr-2">{"["}</span>
+            <span>Contactar</span>
+            <span className="hidden group-hover:inline-block ml-2">{"]"}</span>
+          </Link>
         </div>
       )}
     </nav>
